@@ -123,6 +123,10 @@ estimator outputs. It then plots:
 - GPS blackout region
 - estimation error with covariance bounds
 
+
+![alt text](image.png)
+
+
 ## Current Development Status
 
 This is an active learning project. The dynamics, sensor simulation, dead-reckoning baseline
@@ -131,10 +135,8 @@ workflow are implemented.
 
 Near-term development items:
 
-- compare EKF performance against dead reckoning
 - add Monte Carlo runs over initial condition, sensor noise, and vehicle model
   uncertainty
-- save representative plots for documentation
 - add simple tests for estimator dimensions and covariance symmetry
 
 ## Engineering Notes

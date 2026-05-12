@@ -102,6 +102,7 @@ def plot_overview(results_list):
     ax.legend(loc='upper left', fontsize=8);  ax.grid(True, alpha=0.3)
 
     plt.tight_layout()
+    fig.savefig("assets/overview.png", dpi=200, bbox_inches="tight")
     plt.show()
 
 def plot_errors(results, title='Estimation Errors'):
@@ -138,4 +139,5 @@ def plot_errors(results, title='Estimation Errors'):
 
     axes[-1].set_xlabel('Time (s)')
     plt.tight_layout()
+    fig.savefig("assets/ekf_errors.png", dpi=200, bbox_inches="tight")
     plt.show()
