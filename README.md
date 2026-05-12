@@ -114,7 +114,6 @@ Run:
 ```bash
 python main.py
 ```
-
 The script generates a truth trajectory, simulated sensor measurements, and
 estimator outputs. It then plots:
 
@@ -123,18 +122,23 @@ estimator outputs. It then plots:
 - GPS blackout region
 - estimation error with covariance bounds
 
+The comparison plots between dead reckoning and the EKF can be seen here:
+
+![Overview plot](assets/overview.png)
+
+![EKF error plot](assets/ekf_errors.png)
 
 ## Current Development Status
 
-This is an active learning project. The dynamics, sensor simulation, dead-reckoning baseline
-estimator, EKF predict/update logic, Joseph-form covariance update, and plotting
-workflow are implemented. Basic tests check estimator dimensions, covariance
-symmetry, and covariance positive semi-definiteness.
+This is an active project. Dynamics, sensor simulation, dead-reckoning baseline
+estimator, EKF predict/update logic, Joseph form covariance update, and plotting
+are implemented.
 
-Near-term development items:
+Near-term goals:
 
 - add Monte Carlo runs over initial condition, sensor noise, and vehicle model
   uncertainty
+
 
 ## Engineering Notes
 
