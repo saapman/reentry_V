@@ -1,19 +1,19 @@
 # simulation.py
 """
-Simulation loop: propagate truth, generate measurements, run estimator.
+Simulation loop: propagate state, generate measurements, run estimator.
 """
 import numpy as np
 from config import (DT, T_FINAL, MEAS_DT, X0_TRUE, X0_EST, P0, Q,
                     RANDOM_SEED)
 from dynamics import propagate_state
 from sensors import generate_measurements
-from estimator import DeadReckoning, ExtendedKalmanFilter
+from estimator import Baseline, ExtendedKalmanFilter
 
 
 def generate_truth_and_measurements():
     """
-    Propagate the true trajectory and pre-generate all sensor data.
-    This ensures every estimator sees exactly the same measurements.
+    Propagate the actual trajectory and pre-generate all sensor data.
+    
     """
     np.random.seed(RANDOM_SEED)
 
@@ -52,8 +52,8 @@ def run_estimator(truth_data, estimator_type='ekf'):
     measurements = truth_data['measurements']
 
     # Build estimator
-    if estimator_type == 'dead_reckoning':
-        est = DeadReckoning(X0_EST.copy(), P0.copy(), Q.copy())
+    if estimator_type == 'baseline':
+        est = Baseline(X0_EST.copy(), P0.copy(), Q.copy())
     elif estimator_type == 'ekf':
         est = ExtendedKalmanFilter(X0_EST.copy(), P0.copy(), Q.copy())
     else:
