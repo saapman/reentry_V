@@ -19,9 +19,9 @@ import numpy as np
 from dynamics import propagate_state, numerical_jacobian
 
 
-class Baseline :
+class DeadReckoning:
     """
-    Baseline: propagates dynamics, ignores all measurements.
+    Dead reckoning baseline: propagates dynamics, ignores all measurements.
     ─────────────────────────────────────────────────────────
     Study predict() below — you'll reuse the same logic in your EKF.
     """
@@ -60,4 +60,3 @@ class ExtendedKalmanFilter:
         I = np.eye(self.P.shape[0])
         A = I - K @ H
         self.P = A @ self.P @ A.T + K @ R @ K.T
-

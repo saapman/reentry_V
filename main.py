@@ -7,21 +7,20 @@ Run:  python main.py
 from simulation import generate_truth_and_measurements, run_estimator
 from visualization import plot_overview, plot_errors
 
-
 def main():
     print("=" * 55)
     print("  Re-entry Vehicle — State Estimation")
     print("=" * 55)
 
-    # Generate truth trajectory + sensor data (shared by all estimators)
-    print("\nGenerating truth trajectory and measurements...")
+    # Generate true trajectory + sensor data 
+    print("\nGenerating true trajectory and measurements...")
     truth_data = generate_truth_and_measurements()
 
-    # Baseline — dead reckoning (always works)
-    print("Running dead reckoning (baseline)...")
+    # Dead reckoning baseline: propagates dynamics, ignores measurements.
+    print("Running dead reckoning baseline...")
     res_dr = run_estimator(truth_data, 'dead_reckoning')
 
-    # EKF — will show flat estimate until you implement it
+    # EKF: predicts through nonlinear dynamics and corrects with measurements.
     print("Running EKF...")
     res_ekf = run_estimator(truth_data, 'ekf')
 

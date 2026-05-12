@@ -50,7 +50,8 @@ def plot_overview(results_list):
     gps_v = r0['gps_vel_meas']
     bo    = _blackout_ranges(time, truth)
 
-    fig, axes = plt.subplots(4, 1, figsize=(13, 12), sharex=True)
+    fig, axes = plt.subplots(4, 1, figsize=(11, 7.5), sharex=True,
+                             constrained_layout=True)
     fig.suptitle('Re-entry Vehicle — State Estimation', fontsize=14,
                  fontweight='bold')
 
@@ -106,7 +107,6 @@ def plot_overview(results_list):
     ax.set_xlabel('Time (s)')
     ax.legend(loc='upper left', fontsize=8);  ax.grid(True, alpha=0.3)
 
-    plt.tight_layout()
     plt.show()
 
 
@@ -127,7 +127,8 @@ def plot_errors(results, title='Estimation Errors'):
               'Speed error (m/s)',  'FPA error (°)']
     scales = [1.0, 1.0, 1.0, np.degrees(1.0)]
 
-    fig, axes = plt.subplots(4, 1, figsize=(13, 10), sharex=True)
+    fig, axes = plt.subplots(4, 1, figsize=(11, 7.5), sharex=True,
+                             constrained_layout=True)
     fig.suptitle(title, fontsize=14, fontweight='bold')
 
     for i, ax in enumerate(axes):
@@ -143,5 +144,4 @@ def plot_errors(results, title='Estimation Errors'):
         ax.grid(True, alpha=0.3)
 
     axes[-1].set_xlabel('Time (s)')
-    plt.tight_layout()
     plt.show()

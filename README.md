@@ -6,14 +6,14 @@ GNC learning project.
 Vehicle dynamics are modelled, simulated
 measurements generated and
 covariance matrices propagated.
-As a baseline comparison a state estimation scheme which doesnt take any measurements into account is compared with an
+As a baseline comparison a dead-reckoning scheme which doesnt take any measurements into account is compared with an
 Extended Kalman Filter (EKF) method.
 
 ## Project Goals
 
 - Model simplified re-entry trajectory over a spherical, non-rotating Earth.
 - Simulate navigation challenges like sensor noise and GPS blackout.
-- Compare simple baseline scheme with Kalman-filter state estimation.
+- Compare dead reckoning with Kalman-filter state estimation.
 - Visualise state estimates, measurement availability, estimation error, and
   covariance bounds.
 - Build a clear foundation for later Monte Carlo analysis and model validation.
@@ -62,7 +62,8 @@ This removes distance, speed, and flight-path angle, from the measurement matrix
 
 ## Estimators
 
-- `Baseline`: propagates the nonlinear dynamics and covariance, ignoring measurements.
+- `DeadReckoning`: propagates the nonlinear dynamics and covariance, ignoring
+  measurements. This is used as the baseline comparison.
 
 - `ExtendedKalmanFilter`: implements predict and update steps, including a
   Joseph-form covariance update for numerical robustness.
@@ -93,7 +94,7 @@ finite-precision numerical calculations.
 .
 ├── config.py          # Vehicle, sensor, simulation, and estimator settings
 ├── dynamics.py        # Re-entry dynamics, RK4 propagation, Jacobian
-├── estimator.py       # Baseline and EKF estimator classes
+├── estimator.py       # Dead reckoning and EKF estimator classes
 ├── main.py            # Runs truth generation, estimators, and plots
 ├── sensors.py         # Barometer/GPS measurement generation and blackout
 ├── simulation.py      # Truth trajectory and estimator execution loop
@@ -124,7 +125,7 @@ estimator outputs. It then plots:
 
 ## Current Development Status
 
-This is an active learning project. The dynamics, sensor simulation, baseline
+This is an active learning project. The dynamics, sensor simulation, dead-reckoning baseline
 estimator, EKF predict/update logic, Joseph-form covariance update, and plotting
 workflow are implemented.
 
