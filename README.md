@@ -128,13 +128,13 @@ estimator outputs. It then plots:
 
 This is an active learning project. The dynamics, sensor simulation, dead-reckoning baseline
 estimator, EKF predict/update logic, Joseph-form covariance update, and plotting
-workflow are implemented.
+workflow are implemented. Basic tests check estimator dimensions, covariance
+symmetry, and covariance positive semi-definiteness.
 
 Near-term development items:
 
 - add Monte Carlo runs over initial condition, sensor noise, and vehicle model
   uncertainty
-- add simple tests for estimator dimensions and covariance symmetry
 
 ## Engineering Notes
 
