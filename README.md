@@ -124,9 +124,6 @@ estimator outputs. It then plots:
 - estimation error with covariance bounds
 
 
-![alt text](image.png)
-
-
 ## Current Development Status
 
 This is an active learning project. The dynamics, sensor simulation, dead-reckoning baseline
