@@ -19,7 +19,7 @@ import numpy as np
 from dynamics import propagate_state, numerical_jacobian
 
 
-class DeadReckoning:
+class Baseline :
     """
     Baseline: propagates dynamics, ignores all measurements.
     ─────────────────────────────────────────────────────────
@@ -41,41 +41,23 @@ class DeadReckoning:
 
 
 class ExtendedKalmanFilter:
-    """
-    Extended Kalman Filter — TODO
-    ──────────────────────────────
-
-    PREDICT STEP  (identical to DeadReckoning.predict):
-        1.  F  = numerical_jacobian(x, dt)
-        2.  x⁻ = propagate_state(x, dt)
-        3.  P⁻ = F  P  Fᵀ + Q
-
-    UPDATE STEP:
-        1.  Innovation:            y = z  −  H x⁻
-        2.  Innovation covariance: S = H P⁻ Hᵀ + R
-        3.  Kalman gain:           K = P⁻ Hᵀ S⁻¹
-        4.  State update:          x⁺ = x⁻ + K y
-        5.  Covariance update:     P⁺ = (I − K H) P⁻
-
-    Useful numpy:
-        A @ B           matrix multiply
-        A.T             transpose
-        np.eye(n)       identity matrix
-        np.linalg.inv(S)
-    """
 
     def __init__(self, x0, P0, Q):
         self.x = x0.copy()
         self.P = P0.copy()
         self.Q = Q.copy()
-
+    
     def predict(self, dt):
-        # ── TODO ──────────────────────────────────
-        pass
+        F = numerical_jacobian(self.x, dt)       # linearised state transition
+        self.x = propagate_state(self.x, dt)      # nonlinear propagation
+        self.P = F @ self.P @ F.T + self.Q        # covariance propagation
 
     def update(self, z, H, R):
-        # ── TODO ──────────────────────────────────
-        # Note: z and H change size depending on GPS availability.
-        # Your code should work for any size — the linear algebra
-        # is identical, numpy handles the dimensions automatically.
-        pass
+        y = z - H @ self.x
+        S = H @ self.P @ H.T + R
+        K = self.P @ H.T @ np.linalg.inv(S)
+        self.x = self.x + K @ y
+        I = np.eye(self.P.shape[0])
+        A = I - K @ H
+        self.P = A @ self.P @ A.T + K @ R @ K.T
+
