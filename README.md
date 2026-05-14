@@ -9,7 +9,7 @@ covariance matrices propagated.
 As a baseline comparison a dead-reckoning scheme which doesnt take any measurements into account is compared with an
 Extended Kalman Filter (EKF) method.
 
-## Project Goals
+## Goals
 
 - Model simplified re-entry trajectory over a spherical, non-rotating Earth.
 - Simulate navigation challenges like sensor noise and GPS blackout.
@@ -88,7 +88,7 @@ the simpler covariance update in ideal arithmetic, but is preferred here because
 it better preserves covariance symmetry and positive semi-definiteness in
 finite-precision numerical calculations.
 
-## Repository Structure
+## Structure
 
 ```text
 .
@@ -101,7 +101,7 @@ finite-precision numerical calculations.
 └── visualization.py   # Overview and estimation-error plots
 ```
 
-## Running The Simulation
+## Simulation
 
 Install dependencies:
 
@@ -128,9 +128,9 @@ The comparison plots between dead reckoning and the EKF can be seen here:
 
 ![EKF error plot](assets/ekf_errors.png)
 
-## Current Development Status
+## Current Status
 
-This is an active project. Dynamics, sensor simulation, dead-reckoning baseline
+Dynamics, sensor simulation, dead-reckoning baseline
 estimator, EKF predict/update logic, Joseph form covariance update, and plotting
 are implemented.
 
@@ -139,8 +139,7 @@ Near-term goals:
 - add Monte Carlo runs over initial condition, sensor noise, and vehicle model
   uncertainty
 
-
-## Engineering Notes
+## Notes
 
 This model is intentionally simplified. It is useful for studying estimation
 logic, sensor availability, and uncertainty propagation, but it is not a
@@ -151,7 +150,6 @@ coefficients, heating/ablation effects, and real sensor error calibration.
 ## Development Note
 
 This is an AI-assisted learning project. AI tools were used to accelerate
-implementation and documentation while I worked through the underlying dynamics,
+implementation and documentation while working through the dynamics,
 control, and estimation concepts. The project is intended to demonstrate my
-learning process, engineering judgement, and ability to build and validate
-simulation tools.
+learning and ability to build and validate simulation tools.
