@@ -122,7 +122,9 @@ estimator outputs. It then plots:
 - GPS blackout region
 - estimation error with covariance bounds
 
-The comparison plots between dead reckoning and the EKF can be seen here:
+## Results
+
+Comparison plots between dead reckoning and the EKF can be seen here:
 
 ![Overview plot](assets/overview.png)
 
