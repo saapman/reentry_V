@@ -1,18 +1,17 @@
 # Re-entry Vehicle State Estimation
 
 Python simulation of a planar re-entry vehicle with noisy sensor measurements,
-GPS blackout, and estimator comparison. Intended as a
-GNC learning project. 
-Vehicle dynamics are modelled, simulated
-measurements generated and
-covariance matrices propagated.
-As a baseline comparison a dead-reckoning scheme which doesnt take any measurements into account is compared with an
-Extended Kalman Filter (EKF) method.
+GPS blackout, and estimator comparison. This is a GNC learning project focused
+on nonlinear vehicle dynamics, simulated measurements, covariance propagation,
+and Kalman-filter state estimation.
+
+The simulation compares an Extended Kalman Filter (EKF) with a dead-reckoning
+baseline that propagates the vehicle model without using measurement updates.
 
 ## Goals
 
-- Model simplified re-entry trajectory over a spherical, non-rotating Earth.
-- Simulate navigation challenges like sensor noise and GPS blackout.
+- Model a simplified re-entry trajectory over a spherical, non-rotating Earth.
+- Simulate navigation challenges such as sensor noise and GPS blackout.
 - Compare dead reckoning with Kalman-filter state estimation.
 - Visualise state estimates, measurement availability, estimation error, and
   covariance bounds.
@@ -58,7 +57,8 @@ The measurement model in `sensors.py` includes:
 - GPS blackout between configured altitude limits
 
 During GPS blackout, only the barometric altitude measurement is available.
-This removes distance, speed, and flight-path angle, from the measurement matrix.
+Distance, speed, and flight-path angle are then inferred through the dynamics
+rather than directly corrected by measurements.
 
 ## Estimators
 
@@ -106,7 +106,7 @@ finite-precision numerical calculations.
 Install dependencies:
 
 ```bash
-pip install numpy matplotlib
+pip install numpy matplotlib pytest
 ```
 
 Run:
@@ -124,7 +124,7 @@ estimator outputs. It then plots:
 
 ## Results
 
-Comparison plots between dead reckoning and the EKF can be seen here:
+Comparison plots between dead reckoning and the EKF:
 
 ![Overview plot](assets/overview.png)
 
@@ -132,9 +132,9 @@ Comparison plots between dead reckoning and the EKF can be seen here:
 
 ## Current Status
 
-Dynamics, sensor simulation, dead-reckoning baseline
-estimator, EKF predict/update logic, Joseph form covariance update, and plotting
-are implemented.
+Dynamics, sensor simulation, the dead-reckoning baseline, EKF predict/update
+logic, Joseph-form covariance update, plotting, and basic estimator tests are
+implemented.
 
 Near-term goals:
 
@@ -152,6 +152,6 @@ coefficients, heating/ablation effects, and real sensor error calibration.
 ## Development Note
 
 This is an AI-assisted learning project. AI tools were used to accelerate
-implementation and documentation while working through the dynamics,
-control, and estimation concepts. The project is intended to demonstrate my
-learning and ability to build and validate simulation tools.
+implementation and documentation while I worked through the dynamics, sensor
+modelling, and estimation concepts. The project is intended to demonstrate my
+learning process and ability to build, inspect, and validate simulation tools.
